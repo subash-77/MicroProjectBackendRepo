@@ -23,7 +23,7 @@ public class EHR {
 	@Column(name = "recordDate")
 	private String recordsDate;
 	@Lob
-    @Column(name = "fileData")
+    @Column(name = "fileData",length=1000000000)
     private byte[] fileData;
 	@Column(name = "description")
 	private String description;

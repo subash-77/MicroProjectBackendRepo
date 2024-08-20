@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
+import com.subash.api.model.EHR;
 import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.ownrepo.PsychiatristOwnRepo;
 import com.subash.api.service.PsychiatristService;
@@ -65,5 +66,10 @@ public class PsychiatristServiceImpl implements PsychiatristService {
 			return "Add Failure";
 		}
 	}
+	
+	@Override
+    public EHR saveEHR(EHR ehr) {
+        return ownrepo.saveEhr(ehr);
+    }
 
 }

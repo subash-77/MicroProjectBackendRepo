@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
+import com.subash.api.model.EHR;
 import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.ownrepo.PatientOwnRepo;
@@ -72,5 +73,12 @@ public class PatientOwnRepoImpl implements PatientOwnRepo {
 	public void updateCarePlan(CarePlan careplan) {
 		entityManager.merge(careplan);
 	}
+	
+	public List<EHR> getEHRsByPatientId(String patientId) {
+        TypedQuery<EHR> query = entityManager.createQuery(
+            "SELECT e FROM EHR e WHERE e.patientId = :patientId", EHR.class);
+        query.setParameter("patientId", patientId);
+        return query.getResultList();
+    }
 
 }

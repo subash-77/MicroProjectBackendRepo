@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
+import com.subash.api.model.EHR;
 import com.subash.api.model.PsychiatristLogin;
 
 public interface PsychiatristOwnRepo {
@@ -20,5 +21,7 @@ public interface PsychiatristOwnRepo {
 	public void update(PsychiatristLogin psychiatristLogin);
 
 	public void deleteById(int id);
+	
+	public EHR saveEhr(EHR ehr);
 
 }

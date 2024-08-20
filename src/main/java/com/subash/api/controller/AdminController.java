@@ -59,88 +59,94 @@ public class AdminController {
 	}
 
 	@PostMapping("/updateAppointment")
-	public String insertAppointmnet(@RequestBody Appointment appointment) {
-		String msg = "";
+	public String insertAppointment(@RequestBody Appointment appointment) {
+	    String msg = "";
 
-		PatientInfo patientInfos = appointment.getPatientInfo();
-		int patientId = patientInfos.getPatientinfoId();
-		String patientEmail = service.getPatientEmail(patientId);
-		
-		System.out.println("PATIENT EMAIL"+patientEmail);
-//		String phoneno = patientInfo.getPhoneNo();
-//		System.out.println("phoneno : " + phoneno);
+	    PatientInfo patientInfo = appointment.getPatientInfo();
+	    int patientId = patientInfo.getPatientinfoId();
+	    String patientEmail = service.getPatientEmail(patientId);
+	    
+	    System.out.println("PATIENT EMAIL: " + patientEmail);
 
-		String psychiatristId = appointment.getPsychiatristId();
-		
-		PsychiatristLogin user = psychiatristService.getJewellery(Integer.parseInt(psychiatristId)); // inga tha error
+	    String psychiatristId = appointment.getPsychiatristId();
+	    PsychiatristLogin user = psychiatristService.getJewellery(Integer.parseInt(psychiatristId)); 
 
-		String psychiatristEmail = user.getEmail();
+	    String psychiatristEmail = user.getEmail();
 
+	    // Define the constant meeting link
+	    String meetingLink = "https://meetinglink.example.com/constant-meeting-room";
 
-		try {
-			service.addAppointment(appointment);
-			msg += "addSuccess";
-			
-			 // Extract details for the email
-            String appointmentDate = appointment.getAppointmentDate();
-            String appointmentSlot = appointment.getAppointmentSlot();
-            PatientInfo patientInfo = appointment.getPatientInfo();
-            // Map appointment slots to times
-            String slotTime = getSlotTime(appointmentSlot);
-            // Format email text
-            String text = String.format(
-                "You have an appointment with a patient.%n%n" +
-                "Appointment Date: %s%n" +
-                "Appointment Slot: %s (%s)%n%n" +
-                "Patient Info:%n" +
-                "Name: %s%n" +
-                "Phone No: %s%n" +
-                "Gender: %s%n" +
-                "Age: %s%n",
-                appointmentDate,
-                appointmentSlot,
-                slotTime,
-                patientInfo.getName(),
-                patientInfo.getPhoneNo(),
-                patientInfo.getGender(),
-                patientInfo.getAge()
-            );
+	    try {
+	        service.addAppointment(appointment);
+	        msg += "addSuccess";
+	        
+	        // Extract details for the email
+	        String appointmentDate = appointment.getAppointmentDate();
+	        String appointmentSlot = appointment.getAppointmentSlot();
+	        String slotTime = getSlotTime(appointmentSlot);
 
-            String subject = "Appointment Confirmation";
-            emailService.sendEmail(psychiatristEmail, subject, text);
-            
-            Payment payment = appointment.getPayment();
-            
-         // Prepare the text for the patient
-            String patientText = String.format(
-                "Dear %s,%n%n" +
-                "Your appointment has been scheduled.%n%n" +
-                "Appointment Date: %s%n" +
-                "Appointment Slot: %s (%s)%n%n" +
-                "Payment Info:%n" +
-                "Name: %s%n%n" +
-                "We look forward to seeing you.%n" +
-                "Best regards,%n" +
-                "Your Clinic",
-                patientInfo.getName(),
-                appointmentDate,
-                appointmentSlot,
-                slotTime,
-                payment.getPaymentDate(),
-                payment.getPaymentType(),
-                payment.getAmount()// Assuming psychiatrist's name is in UserName
-            );
+	        // Format email text for psychiatrist
+	        String psychiatristText = String.format(
+	            "You have an appointment with a patient.\n\n" +
+	            "Appointment Date: %s\n" +
+	            "Appointment Slot: %s (%s)\n\n" +
+	            "Patient Info:\n" +
+	            "Name: %s\n" +
+	            "Phone No: %s\n" +
+	            "Gender: %s\n" +
+	            "Age: %s\n\n" +
+	            "Please click here to join the meeting: %s",
+	            appointmentDate,
+	            appointmentSlot,
+	            slotTime,
+	            patientInfo.getName(),
+	            patientInfo.getPhoneNo(),
+	            patientInfo.getGender(),
+	            patientInfo.getAge(),
+	            meetingLink
+	        );
 
-            // Send email to patient
-            String patientSubject = "Appointment Scheduled";
-            emailService.sendEmail(patientEmail, patientSubject, patientText);
+	        String subject = "Appointment Confirmation";
+	        emailService.sendEmail(psychiatristEmail, subject, psychiatristText);
+	        
+	        Payment payment = appointment.getPayment();
+	        
+	        // Format email text for patient
+	        String patientText = String.format(
+	            "Dear %s,\n\n" +
+	            "Your appointment has been scheduled.\n\n" +
+	            "Appointment Date: %s\n" +
+	            "Appointment Slot: %s (%s)\n\n" +
+	            "Payment Info:\n" +
+	            "Name: %s\n" +
+	            "Payment Date: %s\n" +
+	            "Payment Type: %s\n" +
+	            "Amount: %s\n\n" +
+	            "Please click here to join the meeting: %s\n\n" +
+	            "We look forward to seeing you.\n" +
+	            "Best regards,\n" +
+	            "Your Clinic",
+	            patientInfo.getName(),
+	            appointmentDate,
+	            appointmentSlot,
+	            slotTime,
+	            patientInfo.getName(),
+	            payment.getPaymentDate(),
+	            payment.getPaymentType(),
+	            payment.getAmount(),
+	            meetingLink
+	        );
 
-		} catch (Exception e) {
-			msg += "addFailure";
-		}
-		return msg;
+	        // Send email to patient
+	        String patientSubject = "Appointment Confirmed";
+	        emailService.sendEmail(patientEmail, patientSubject, patientText);
 
+	    } catch (Exception e) {
+	        msg += "addFailure";
+	    }
+	    return msg;
 	}
+
 
 	@PutMapping
 	public String updateJewellery(@RequestBody User user) {

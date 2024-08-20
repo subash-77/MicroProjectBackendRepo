@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
+import com.subash.api.model.EHR;
 import com.subash.api.model.User;
 
 public interface PatientOwnRepo {
@@ -22,5 +23,7 @@ public interface PatientOwnRepo {
 	public void updateCarePlan(CarePlan careplan);
 
 	public void deleteById(int id);
+	
+	public List<EHR> getEHRsByPatientId(String patientId);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
+import com.subash.api.model.EHR;
 import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.ownrepo.PatientOwnRepo;
@@ -52,10 +53,10 @@ public class PatientServiceImpl implements PatientService {
 	public void deleteJewellery(int id) {
 		ownrepo.deleteById(id);
 	}
-	
+
 	@Override
 	public List<User> getAllAppointment(int id) {
-		
+
 		return ownrepo.findAllAppointment(id);
 	}
 
@@ -66,9 +67,13 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public void updateCarePlan(CarePlan carePlan) {
-		
+
 		ownrepo.updateCarePlan(carePlan);
-		
+
 	}
+	
+	public List<EHR> getEHRsByPatientId(String patientId) {
+        return ownrepo.getEHRsByPatientId(patientId);
+    }
 
 }
