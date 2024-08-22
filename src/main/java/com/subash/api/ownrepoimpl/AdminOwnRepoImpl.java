@@ -4,11 +4,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.subash.api.model.Appointment;
-import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.ownrepo.AdminOwnRepo;
-import com.subash.api.ownrepo.PatientOwnRepo;
-import com.subash.api.ownrepo.PsychiatristOwnRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -65,7 +62,6 @@ public class AdminOwnRepoImpl implements AdminOwnRepo {
 
 	@Override
 	public List<User> findAllPatients() {
-	    // Create a JPQL query to find all users with the role 'patient'
 	    return entityManager.createQuery(
 	        "SELECT u FROM User u WHERE u.role = :role", User.class)
 	        .setParameter("role", "patient")
@@ -74,19 +70,15 @@ public class AdminOwnRepoImpl implements AdminOwnRepo {
 
 	@Override
 	public String getPatientEmail(int id) {
-		 // Define the HQL query
         String hql = "SELECT u.email FROM User u JOIN u.appointment a WHERE a.patientInfo.patientinfoId = :patientinfoId";
 
-        // Create the TypedQuery
         TypedQuery<String> query = entityManager.createQuery(hql, String.class);
         query.setParameter("patientinfoId", id);
 
-        // Execute the query and return the result
+       
         try {
-            return query.getSingleResult(); // getSingleResult() will return a single result or throw NoResultException if none is found
+            return query.getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
-            // Handle exceptions appropriately
             return null;
         }
     }

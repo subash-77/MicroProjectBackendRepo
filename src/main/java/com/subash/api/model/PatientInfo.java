@@ -24,7 +24,6 @@ public class PatientInfo {
 	private String age;
 	public PatientInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public PatientInfo(int patientinfoId, String name, String phoneNo, String gender, String age) {
 		super();

@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.subash</groupId>
-	<artifactId>OnlineJewelleryManagementSystem1</artifactId>
+	<artifactId>TelepsychiatryServicesManagementSystem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>OnlineCrimeManagementSystem</name>
+	<name>TelepsychiatryServicesManagementSystem</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

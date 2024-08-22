@@ -37,7 +37,7 @@ public class RegisterController {
 	
     private static final String SECRET_KEY = "SUBASH";
 
-    private static final long EXPIRATION_TIME = 3600000; // 1 hour in milliseconds
+    private static final long EXPIRATION_TIME = 3600000; 
 	
 	
 	@PostMapping
@@ -61,29 +61,21 @@ public class RegisterController {
 	       
 	        if (isValid) {
 
-//	            String token = generateToken(user.getEmail());
-//	            String role = service.findRole(user.getEmail());
-//	            
-//	            PsychiatristLogin psychiatristLogin = service.findPsyId(user.getEmail());
-//	            //System.out.println("vada chello"+service.findPsyId(user.getEmail()));
-//	            System.out.println("Role+" + role);
-//	            return "validCredentials:" + token +":" + role+":" +psychiatristLogin.getPsychiatristId();
-	        	
+
 	        	String token = generateToken(user.getEmail());
 	            String role = service.findRole(user.getEmail());
 	            int patientId = service.findPatientId(user.getEmail());
 
-	            // Find PsychiatristLogin details if the role is 'psychiatrist'
 	            PsychiatristLogin psychiatristLogin = null;
 	            if ("psychiatrist".equals(role)) {
 	                psychiatristLogin = service.findPsyId(user.getEmail());
 	            }
 
-	            // Build response
+	           
 	            if ("psychiatrist".equals(role) && psychiatristLogin != null) {
 	                return "validCredentials:" + token + ":" + role + ":" + psychiatristLogin.getPsychiatristId();
 	            } else {
-	                return "validCredentials:" + token + ":" + role + ":" + patientId+":"+patientId; // or you could return an empty string or some other default value
+	                return "validCredentials:" + token + ":" + role + ":" + patientId+":"+patientId; 
 	            }
 	        } else {
 	            return "invalidCredentials";
@@ -123,7 +115,6 @@ public class RegisterController {
 	        try {
 	            boolean isTokenValid = service.isTokenValid(randomvalue);
 	            if (isTokenValid) {
-	            	System.out.print("Token is valid and not expired");
 	            	
 	                return "Token is valid and not expired";
 	            } else {

@@ -3,16 +3,11 @@ package com.subash.api.serviceimpl;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import com.subash.api.model.Appointment;
 import com.subash.api.model.CarePlan;
 import com.subash.api.model.EHR;
-import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.ownrepo.PatientOwnRepo;
-import com.subash.api.ownrepo.PsychiatristOwnRepo;
 import com.subash.api.service.PatientService;
-import com.subash.api.service.PsychiatristService;
 
 @Service
 public class PatientServiceImpl implements PatientService {

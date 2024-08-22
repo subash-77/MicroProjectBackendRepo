@@ -37,7 +37,6 @@ public class PsychiatristLogin {
 	
 	public PsychiatristLogin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public PsychiatristLogin(int psychiatristId, String username, String email, String password, String specialization,

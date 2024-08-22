@@ -3,13 +3,11 @@ package com.subash.api.ownrepoimpl;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
-import com.subash.api.model.Appointment;
+
 import com.subash.api.model.CarePlan;
 import com.subash.api.model.EHR;
-import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.ownrepo.PatientOwnRepo;
-import com.subash.api.ownrepo.PsychiatristOwnRepo;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;

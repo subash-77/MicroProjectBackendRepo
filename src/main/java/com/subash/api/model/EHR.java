@@ -29,7 +29,6 @@ public class EHR {
 	private String description;
 	public EHR() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public EHR(int recordId, String patientId, String psychiatristId, String recordsDate, byte[] fileData,
 			String description) {

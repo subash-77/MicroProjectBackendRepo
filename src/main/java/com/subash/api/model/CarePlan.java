@@ -24,7 +24,6 @@ public class CarePlan {
 	private String status;
 	public CarePlan() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public CarePlan(int careplanId, String psychiatristId, String patientId, String carecardId, String status) {
 		super();

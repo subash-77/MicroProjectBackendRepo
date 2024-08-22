@@ -1,12 +1,10 @@
 package com.subash.api.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,7 +24,6 @@ public class PsychiatristAvailability {
 	private int slot3;
 	public PsychiatristAvailability() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public PsychiatristAvailability(int psychiatristavailableId, String availableDate, int slot1, int slot2,
 			int slot3) {
@@ -72,11 +69,5 @@ public class PsychiatristAvailability {
 		return "PsychiatristAvailability [psychiatristavailableId=" + psychiatristavailableId + ", availableDate="
 				+ availableDate + ", slot1=" + slot1 + ", slot2=" + slot2 + ", slot3=" + slot3 + "]";
 	}
-	
-	
-	
-	
-	
-	
 	
 }

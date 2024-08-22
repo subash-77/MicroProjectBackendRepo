@@ -1,6 +1,5 @@
 package com.subash.api.controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -84,8 +83,6 @@ public class PsychiatristController {
 	        @PathVariable("id") Long id, 
 	        @RequestBody PsychiatristLogin psychiatristLogin) {
 	    try {
-	        // Ensure you are updating the correct record based on ID
-	        //psychiatristLogin.setPsychiatristId(id); 
 	        service.updateJewellery(psychiatristLogin);
 	        return ResponseEntity.ok("updateSuccess");
 	    } catch (Exception e) {
@@ -95,7 +92,6 @@ public class PsychiatristController {
 
 	@GetMapping("{id}")
 	public PsychiatristLogin getJewelleryById(@PathVariable("id") int id) {
-		System.out.println("Nanthanda Athu"+id);
 		return service.getJewellery(id);
 	}
 	
@@ -139,10 +135,9 @@ public class PsychiatristController {
 	        EHR ehr = new EHR();
 	        ehr.setPatientId(patientId);
 	        ehr.setPsychiatristId(psychiatristId);
-	        ehr.setRecordsDate(recordsDate); // Convert string to LocalDate
+	        ehr.setRecordsDate(recordsDate);
 	        ehr.setDescription(description);
 	        
-	        // Convert MultipartFile to byte[]
 	        byte[] fileBytes = fileData.getBytes();
 	        ehr.setFileData(fileBytes);
 	        

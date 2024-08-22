@@ -52,7 +52,6 @@ public class PsychiatristOwnRepoImpl implements PsychiatristOwnRepo {
 
 	@Override
 	public List<Appointment> findAllAppointment(int id) {
-	    // Create a JPQL query to find all appointments for a given psychiatristId with status 'scheduled'
 	    return entityManager.createQuery(
 	        "SELECT a FROM Appointment a WHERE a.psychiatristId = :psychiatristId AND a.status = 'scheduled'", Appointment.class)
 	        .setParameter("psychiatristId", id)
@@ -67,7 +66,6 @@ public class PsychiatristOwnRepoImpl implements PsychiatristOwnRepo {
 
 	@Override
 	public EHR saveEhr(EHR ehr) {
-		// TODO Auto-generated method stub
 		return entityManager.merge(ehr);
 	}
 

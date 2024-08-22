@@ -21,7 +21,6 @@ public class Payment {
 	private String paymentType;
 	public Payment() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Payment(int paymentId, String amount, String paymentDate, String paymentType) {
 		super();

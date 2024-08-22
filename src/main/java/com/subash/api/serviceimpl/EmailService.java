@@ -11,15 +11,14 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    private final String fromEmail = "noreply@yourdomain.com"; // Replace with your "noreply" email address
+    private final static String fromEmail = "noreply@yourdomain.com";
 
     public void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(fromEmail); // Set the "noreply" address here
+        message.setFrom(fromEmail); 
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
         javaMailSender.send(message);
-        System.out.println("mail sended");
     }
 }

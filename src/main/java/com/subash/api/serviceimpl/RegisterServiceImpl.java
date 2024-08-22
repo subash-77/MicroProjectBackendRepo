@@ -45,7 +45,6 @@ public class RegisterServiceImpl implements RegisterService {
 
 	@Override
 	 public boolean isTokenValid(String randomValue) {
-        try {
            
             String tokenString = ownrepo.findByRandomValue(randomValue);
             if (tokenString != null) {
@@ -58,15 +57,9 @@ public class RegisterServiceImpl implements RegisterService {
                 Instant now = Instant.now();
                 Date expiryDate = claims.getExpiration();
                 
-                System.out.println("EXPIRY IN "+expiryDate);
-
-
                 return !now.isAfter(expiryDate.toInstant());
             }
-        } catch (SignatureException e) {
-
-            e.printStackTrace();
-        }
+        
         
         return false;
     }

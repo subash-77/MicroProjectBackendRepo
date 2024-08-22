@@ -47,7 +47,6 @@ public class RegisterOwnRepoImpl implements RegisterOwnRepo {
 		TypedQuery<String> query = entityManager.createQuery(hql, String.class);
 		query.setParameter("randomValue", randomValue);
 		try {
-			System.out.println(query);
 			return query.getSingleResult();
 		} catch (Exception e) {
 			return null;
@@ -60,13 +59,8 @@ public class RegisterOwnRepoImpl implements RegisterOwnRepo {
 		String hql = "DELETE FROM Token t WHERE t.randomValue = :randomValue";
 	    Query query = entityManager.createQuery(hql);
 	    query.setParameter("randomValue", randomValue);
-
-	    try {
-	        int result = query.executeUpdate();
-	        System.out.println(result + " record(s) deleted."); 
-	    } catch (Exception e) {
-	        e.printStackTrace(); 
-	    }
+	    query.executeUpdate();
+	    
 	}
 
 	@Override

@@ -14,13 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.subash.api.model.Appointment;
+
 import com.subash.api.model.CarePlan;
 import com.subash.api.model.EHR;
-import com.subash.api.model.PsychiatristLogin;
 import com.subash.api.model.User;
 import com.subash.api.serviceimpl.PatientServiceImpl;
-import com.subash.api.serviceimpl.PsychiatristServiceImpl;
 
 @RestController
 @RequestMapping("/patient")
